@@ -1,0 +1,20 @@
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET build files
+**/bin/
+**/obj/
+TestResults/
+
+# IDE and temporary files
+.idea/
+*.log
+*.tmp
+
+# Local development configuration with secrets
+appsettings.Development.json
