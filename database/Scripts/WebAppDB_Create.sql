@@ -99,6 +99,7 @@ AS
 SELECT
     sa.SaleId,
     sa.SellerId,
+    CONCAT(se.FirstName, N' ', se.LastName) AS SellerName,
     p.ProductName,
     c.FullName AS CustomerName,
     sa.Quantity,
