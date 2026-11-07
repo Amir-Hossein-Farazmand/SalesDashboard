@@ -1,0 +1,43 @@
+@{
+    var isLoginPage = ViewData["PageKind"] as string == "login";
+}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] | سامانه نمایش اطلاعات فروش</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="@(isLoginPage ? "page-login" : "page-app")">
+    <a class="skip-link" href="#main-content">رفتن به محتوای صفحه</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="site-brand">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5 17V12M12 17V7M19 17V4" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
+                </span>
+                <span class="brand-title">سامانه نمایش اطلاعات فروش</span>
+            </div>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <div class="account-bar">
+                    <span class="account-name" id="full-name">@User.Identity.Name</span>
+                    <form asp-controller="Auth" asp-action="Logout" method="post" class="logout-form">
+                        <button type="submit" class="logout-button">خروج از حساب</button>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <span class="header-caption">ورود به حساب کاربری</span>
+            }
+        </div>
+    </header>
+    <main id="main-content" class="@(isLoginPage ? "login-main" : "app-main")">
+        @RenderBody()
+    </main>
+    <footer class="site-footer">سامانه نمایش اطلاعات فروش</footer>
+</body>
+</html>

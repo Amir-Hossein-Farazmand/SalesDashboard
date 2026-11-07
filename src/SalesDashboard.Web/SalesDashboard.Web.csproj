@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<UserSecretsId>SalesDashboard-iteration-1</UserSecretsId>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="../SalesDashboard.Business/SalesDashboard.Business.csproj"/>
+		<ProjectReference Include="../SalesDashboard.Data/SalesDashboard.Data.csproj"/>
+	</ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<ProjectReference Include="../SalesDashboard.Business/SalesDashboard.Business.csproj"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.14"/>
+		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14"/>
+	</ItemGroup>
+</Project>
