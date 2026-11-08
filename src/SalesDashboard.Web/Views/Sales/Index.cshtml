@@ -1,0 +1,29 @@
+@model SalesDashboard.Web.ViewModels.SalesViewModel
+@{ ViewData["Title"] = "فروش‌ها"; }
+<section class="data-panel" aria-labelledby="page-title">
+    <div class="panel-heading"><p class="eyebrow">اطلاعات فروش</p><h1 id="page-title">فروش‌ها</h1></div>
+    <form asp-controller="Sales" asp-action="Index" method="get" class="search-form">
+        <label asp-for="SellerId">فروشنده</label>
+        <select asp-for="SellerId" asp-items="@(new Microsoft.AspNetCore.Mvc.Rendering.SelectList(Model.Sellers.Select(x => new { x.SellerId, Name = x.FirstName + " " + x.LastName }), "SellerId", "Name"))" class="seller-filter">
+            <option value="">همه فروشندگان</option>
+        </select>
+        <button type="submit" class="search-button">اعمال فیلتر</button>
+        <a asp-controller="Sales" asp-action="Index" class="reset-link">پاک کردن فیلتر</a>
+    </form>
+    @if (Model.Items.Count == 0)
+    {
+        <p class="empty-state" role="status">موردی یافت نشد.</p>
+    }
+    else
+    {
+        <div class="data-table-wrap"><table class="table data-table">
+            <thead><tr><th scope="col">فروشنده</th><th scope="col">محصول</th><th scope="col">خریدار</th><th scope="col">تعداد</th><th scope="col">مبلغ کل (ریال)</th><th scope="col">تاریخ</th></tr></thead>
+            <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr><td>@item.SellerName</td><td>@item.ProductName</td><td>@item.CustomerName</td><td>@item.Quantity</td><td class="price-cell">@item.TotalAmount.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)</td><td dir="ltr">@item.SaleDate.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture)</td></tr>
+            }
+            </tbody>
+        </table></div>
+    }
+</section>

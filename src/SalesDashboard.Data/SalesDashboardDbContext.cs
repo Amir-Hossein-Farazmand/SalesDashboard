@@ -8,6 +8,8 @@ public sealed class SalesDashboardDbContext(DbContextOptions<SalesDashboardDbCon
     public DbSet<Seller> Sellers => Set<Seller>();
     public DbSet<Customer> Customers => Set<Customer>();
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<StockItem> Stock => Set<StockItem>();
+    public DbSet<Sale> Sales => Set<Sale>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         var user = modelBuilder.Entity<User>();
@@ -35,6 +37,19 @@ public sealed class SalesDashboardDbContext(DbContextOptions<SalesDashboardDbCon
             entity.ToView("vw_Products", "dbo");
             entity.Property(x => x.LatestPrice).HasPrecision(18, 0);
             entity.Property(x => x.LatestPriceStartDate).HasColumnType("date");
+        });
+        modelBuilder.Entity<StockItem>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("vw_Stock", "dbo");
+        });
+        modelBuilder.Entity<Sale>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("vw_Sales", "dbo");
+            entity.Property(x => x.UnitPrice).HasPrecision(18, 0);
+            entity.Property(x => x.TotalAmount).HasPrecision(29, 0);
+            entity.Property(x => x.SaleDate).HasColumnType("date");
         });
     }
 }
