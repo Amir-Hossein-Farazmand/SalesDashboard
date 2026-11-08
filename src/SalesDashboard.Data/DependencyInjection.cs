@@ -14,6 +14,9 @@ public static class DependencyInjection
             throw new InvalidOperationException("The application connection must target WebAppDB.");
         services.AddDbContext<SalesDashboardDbContext>(options => options.UseSqlServer(connectionString));
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ISellerRepository, SellerRepository>();
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
         return services;
     }
 }

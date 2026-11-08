@@ -34,6 +34,15 @@
                 <span class="header-caption">ورود به حساب کاربری</span>
             }
         </div>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <nav class="main-nav" aria-label="صفحات سامانه">
+                <a asp-controller="Home" asp-action="Index">خانه</a>
+                <a asp-controller="Sellers" asp-action="Index">فروشنده‌ها</a>
+                <a asp-controller="Customers" asp-action="Index">خریداران</a>
+                <a asp-controller="Products" asp-action="Index">محصولات و قیمت</a>
+            </nav>
+        }
     </header>
     <main id="main-content" class="@(isLoginPage ? "login-main" : "app-main")">
         @RenderBody()

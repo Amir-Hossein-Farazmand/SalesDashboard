@@ -341,3 +341,122 @@ button:focus-visible, .skip-link:focus {
     .skip-link:focus {
         top: 12px;
     }
+
+/* Iteration 2: desktop read-only lists */
+.main-nav {
+    display: flex;
+    gap: 8px;
+    max-width: 1248px;
+    margin: 0 auto;
+    padding: 0 40px 14px;
+}
+
+    .main-nav a {
+        color: #354b72;
+        text-decoration: none;
+        padding: 7px 16px;
+        border-radius: 7px;
+    }
+
+        .main-nav a:hover, .main-nav a:focus-visible {
+            color: #24499f;
+            background: #edf2ff;
+        }
+
+.data-panel {
+    background: white;
+    border: 1px solid #dce4ef;
+    border-radius: 14px;
+    padding: 28px;
+}
+
+.panel-heading h1 {
+    font-size: 23px;
+    font-weight: 700;
+    margin: 0 0 24px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+    .search-form label {
+        font-weight: 700;
+    }
+
+.search-input {
+    width: 300px;
+    border: 1px solid #cbd5e3;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+    .search-input:focus {
+        outline: 2px solid #315dc4;
+        outline-offset: 2px;
+    }
+
+.search-button {
+    padding: 8px 22px;
+    color: white;
+    background: #315dc4;
+    border: 1px solid #315dc4;
+    border-radius: 8px;
+}
+
+    .search-button:hover {
+        background: #24499f;
+    }
+
+.reset-link {
+    color: #315dc4;
+    padding: 6px;
+}
+
+.data-table-wrap {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+    .data-table th {
+        background: #eef3fb;
+        color: #30466b;
+        font-size: 13px;
+    }
+
+    .data-table th, .data-table td {
+        padding: 14px 16px;
+        text-align: right;
+        border-bottom: 1px solid #e5ebf3;
+        vertical-align: middle;
+    }
+
+    .data-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .data-table tbody tr:hover {
+        background: #fafcff;
+    }
+
+.price-cell {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.empty-state {
+    padding: 30px;
+    margin: 0;
+    background: #f5f7fb;
+    border-radius: 9px;
+    color: #65748a;
+    text-align: center;
+}

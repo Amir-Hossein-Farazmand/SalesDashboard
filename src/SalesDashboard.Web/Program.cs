@@ -20,6 +20,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddAuthorization(options => options.FallbackPolicy =
     new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ISellerService, SellerService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 builder.Services.AddDataAccess(builder.Configuration.GetConnectionString("WebAppDB")
     ?? throw new InvalidOperationException("ConnectionStrings:WebAppDB is required."));
 var app = builder.Build();

@@ -1,0 +1,34 @@
+@model SellersViewModel
+@{ ViewData["Title"] = "فروشنده‌ها"; }
+<section class="data-panel" aria-labelledby="page-title">
+    <div class="panel-heading"><p class="eyebrow">اطلاعات فروش</p><h1 id="page-title">فروشنده‌ها</h1></div>
+    <form asp-controller="Sellers" asp-action="Index" method="get" class="search-form">
+        <label for="search">جست‌وجوی نام</label>
+        <input type="search" id="search" name="search" value="@Model.Search" class="search-input" />
+        <button type="submit" class="search-button">جست‌وجو</button>
+        <a asp-controller="Sellers" asp-action="Index" class="reset-link">نمایش همه</a>
+    </form>
+    @if (Model.Items.Count == 0)
+    {
+        <p class="empty-state" role="status">موردی یافت نشد.</p>
+    }
+    else
+    {
+        <div class="data-table-wrap">
+            <table class="table data-table">
+                <thead><tr><th scope="col">نام</th><th scope="col">نام خانوادگی</th><th scope="col">تلفن</th><th scope="col">شهر</th></tr></thead>
+                <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td><bdi>@item.Phone</bdi></td>
+                    <td>@item.City</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

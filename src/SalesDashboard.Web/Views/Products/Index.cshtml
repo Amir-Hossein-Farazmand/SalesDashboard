@@ -1,0 +1,28 @@
+@model IReadOnlyList<SalesDashboard.Business.Models.Product>
+@{ ViewData["Title"] = "محصولات و قیمت"; }
+<section class="data-panel" aria-labelledby="page-title">
+    <div class="panel-heading"><p class="eyebrow">اطلاعات فروش</p><h1 id="page-title">محصولات و قیمت</h1></div>
+    @if (Model.Count == 0)
+    {
+        <p class="empty-state" role="status">موردی یافت نشد.</p>
+    }
+    else
+    {
+        <div class="data-table-wrap">
+            <table class="table data-table">
+                <thead><tr><th scope="col">نام محصول</th><th scope="col">دسته</th><th scope="col">واحد</th><th scope="col">آخرین قیمت (ریال)</th></tr></thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Category</td>
+                    <td>@item.Unit</td>
+                    <td class="price-cell">@(item.LatestPrice.HasValue ? item.LatestPrice.Value.ToString("N0", System.Globalization.CultureInfo.InvariantCulture) : "ثبت نشده")</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
