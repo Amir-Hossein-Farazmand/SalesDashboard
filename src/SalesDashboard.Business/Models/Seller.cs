@@ -1,3 +1,4 @@
+// Represent the read-only Seller data returned by a WebAppDB view.
 namespace SalesDashboard.Business.Models;
 
 public sealed class Seller

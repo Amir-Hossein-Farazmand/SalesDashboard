@@ -1,3 +1,4 @@
+// Use a fake user repository by default; an explicit test SQL connection enables real user lookups.
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;

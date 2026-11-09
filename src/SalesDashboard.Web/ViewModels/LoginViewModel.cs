@@ -1,3 +1,4 @@
+// Validate login form fields and carry the optional local return URL.
 using System.ComponentModel.DataAnnotations;
 namespace SalesDashboard.Web.ViewModels;
 

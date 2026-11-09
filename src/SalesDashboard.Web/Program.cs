@@ -1,3 +1,4 @@
+// Configure MVC, cookie authentication, service registration and the HTTP pipeline.
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +6,7 @@ using SalesDashboard.Business.Interfaces;
 using SalesDashboard.Business.Services;
 using SalesDashboard.Data;
 var builder = WebApplication.CreateBuilder(args);
+// Validate anti-forgery tokens on unsafe HTTP methods.
 builder.Services.AddControllersWithViews(options =>
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -17,6 +19,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.Cookie.SameSite = SameSiteMode.Lax;
         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     });
+// Require authentication unless an action explicitly allows anonymous access.
 builder.Services.AddAuthorization(options => options.FallbackPolicy =
     new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -26,9 +29,11 @@ builder.Services.AddScoped<ISellerService, SellerService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
+// This is the composition root; controllers never call the data layer directly.
 builder.Services.AddDataAccess(builder.Configuration.GetConnectionString("WebAppDB")
     ?? throw new InvalidOperationException("ConnectionStrings:WebAppDB is required."));
 var app = builder.Build();
+// Return a generic response without exposing connection details or SQL diagnostics.
 app.UseExceptionHandler(handler => handler.Run(async context =>
 {
     context.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;

@@ -1,3 +1,4 @@
+// Render the existing authenticated landing page without querying business data.
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace SalesDashboard.Web.Controllers;
@@ -6,6 +7,6 @@ namespace SalesDashboard.Web.Controllers;
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 public sealed class HomeController : Controller
 {
-    // مقصد موقت دور اول مطابق طراحی VPP؛ صفحه کسب‌وکاری تازه نیست.
+    // Keep the original landing page; it is not an additional business use case.
     public IActionResult Index() => View();
 }

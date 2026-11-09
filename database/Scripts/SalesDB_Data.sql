@@ -1,3 +1,4 @@
+-- Populate the fresh SalesDB with deterministic sample data. Run once after schema creation.
 USE SalesDB;
 
 -- 1. Insert Sellers

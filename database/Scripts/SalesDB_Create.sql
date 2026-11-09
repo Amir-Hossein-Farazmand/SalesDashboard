@@ -1,3 +1,4 @@
+-- Create the business schema in a fresh database. Do not rerun against an existing database.
 CREATE DATABASE SalesDB;
 GO
 

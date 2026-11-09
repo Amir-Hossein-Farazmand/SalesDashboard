@@ -1,3 +1,4 @@
+// Serve the authorized stock page through its business service.
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SalesDashboard.Business.Interfaces;

@@ -1,3 +1,4 @@
+// Map Users and the five read-only WebAppDB views using the single application DbContext.
 using Microsoft.EntityFrameworkCore;
 using SalesDashboard.Business.Models;
 namespace SalesDashboard.Data;
@@ -21,6 +22,7 @@ public sealed class SalesDashboardDbContext(DbContextOptions<SalesDashboardDbCon
         user.Property(x => x.Password).HasMaxLength(50).IsRequired();
         user.Property(x => x.FullName).HasMaxLength(100).IsRequired();
         user.Property(x => x.IsActive).IsRequired().HasDefaultValue(true);
+        // Business models map to views and have no EF key or write-tracking behavior.
         modelBuilder.Entity<Seller>(entity =>
         {
             entity.HasNoKey();
@@ -48,6 +50,7 @@ public sealed class SalesDashboardDbContext(DbContextOptions<SalesDashboardDbCon
             entity.HasNoKey();
             entity.ToView("vw_Sales", "dbo");
             entity.Property(x => x.UnitPrice).HasPrecision(18, 0);
+            // Match the precision of Quantity * UnitPrice in vw_Sales.
             entity.Property(x => x.TotalAmount).HasPrecision(29, 0);
             entity.Property(x => x.SaleDate).HasColumnType("date");
         });

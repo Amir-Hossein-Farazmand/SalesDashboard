@@ -1,3 +1,4 @@
+<!-- Project references and package dependencies for SalesDashboard.Web. -->
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
 		<UserSecretsId>SalesDashboard-iteration-1</UserSecretsId>

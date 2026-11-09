@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<!-- Project references and package dependencies for SalesDashboard.Data. -->
+<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
 		<ProjectReference Include="../SalesDashboard.Business/SalesDashboard.Business.csproj"/>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.14"/>

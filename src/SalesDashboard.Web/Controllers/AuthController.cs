@@ -1,3 +1,4 @@
+// Handle login and logout with cookie authentication; business credential checks stay in IAuthService.
 using System.Globalization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
@@ -28,6 +29,7 @@ public sealed class AuthController(IAuthService authService) : Controller
             ModelState.AddModelError(string.Empty, "اطلاعات ورود معتبر نیست یا حساب غیرفعال است.");
             return Redisplay(model);
         }
+        // Store the user ID and full name in the cookie identity, never the password.
         var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString(CultureInfo.InvariantCulture)),
@@ -36,6 +38,7 @@ public sealed class AuthController(IAuthService authService) : Controller
         var principal = new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
             new AuthenticationProperties { IsPersistent = false });
+        // Only allow local return URLs after a successful sign-in.
         if (!string.IsNullOrEmpty(model.ReturnURL) && Url.IsLocalUrl(model.ReturnURL))
             return LocalRedirect(model.ReturnURL);
         return RedirectToAction("Index", "Home");
@@ -48,6 +51,7 @@ public sealed class AuthController(IAuthService authService) : Controller
     }
     private ViewResult Redisplay(LoginViewModel model)
     {
+        // Clear both the model and binding state before redisplaying the form.
         model.Password = string.Empty;
         ModelState.SetModelValue(nameof(model.Password), new Microsoft.AspNetCore.Mvc.ModelBinding.ValueProviderResult(string.Empty));
         return View("Login", model);

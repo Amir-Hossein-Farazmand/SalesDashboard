@@ -1,3 +1,4 @@
+// Represent the read-only StockItem data returned by a WebAppDB view.
 namespace SalesDashboard.Business.Models;
 
 public sealed class StockItem

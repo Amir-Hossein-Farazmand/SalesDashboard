@@ -1,3 +1,4 @@
+// Represent the WebAppDB Users row used for authentication.
 namespace SalesDashboard.Business.Models;
 
 public sealed class User

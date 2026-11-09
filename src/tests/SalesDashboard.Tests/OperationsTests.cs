@@ -1,3 +1,4 @@
+// Verify UC-06 and UC-07, stock boundaries and seller filtering using controlled repositories.
 using System.Net;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
@@ -87,6 +88,7 @@ public sealed class OperationsTests
         Assert.Contains("class=\"stock-low\">0</td>", html);
         Assert.Contains("Low Stock", html); Assert.Contains("Piece", html);
         var css = await c.GetStringAsync("/css/site.css");
+        // Match the CSS declaration independently of whitespace and line breaks.
         var rule = Regex.Match(
             css,
             @"\.data-table\s+td\.stock-low\s*\{([^}]*)\}",

@@ -1,3 +1,4 @@
+-- Create users and cross-database read-only views. The application connects only to WebAppDB.
 -- 1. Create WebAppDB
 CREATE DATABASE WebAppDB;
 GO
@@ -69,6 +70,7 @@ SELECT
     pl.Price AS LatestPrice,
     pl.StartDate AS LatestPriceStartDate
 FROM SalesDB.dbo.Products AS p
+-- Preserve products without a price; select the latest effective date, then highest PriceId.
 OUTER APPLY (
     SELECT TOP 1
         Price,
@@ -104,6 +106,7 @@ SELECT
     c.FullName AS CustomerName,
     sa.Quantity,
     sa.UnitPrice,
+    -- Use the transaction unit price, not the current catalog price.
     CAST(sa.Quantity * sa.UnitPrice AS DECIMAL(29,0)) AS TotalAmount,
     sa.SaleDate
 FROM SalesDB.dbo.Sales AS sa

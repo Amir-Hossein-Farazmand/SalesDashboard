@@ -1,3 +1,4 @@
+// Serve the authorized sellers page through its business service.
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SalesDashboard.Business.Interfaces;
@@ -8,10 +9,10 @@ namespace SalesDashboard.Web.Controllers;
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 public sealed class SellersController(ISellerService service) : Controller
 {
-	[HttpGet]
-	public async Task<IActionResult> Index(string? search = null)
-	{
-		var items = await service.GetAllAsync(search, HttpContext.RequestAborted);
-		return View(new SellersViewModel(search?.Trim(), items));
-	}
+    [HttpGet]
+    public async Task<IActionResult> Index(string? search = null)
+    {
+        var items = await service.GetAllAsync(search, HttpContext.RequestAborted);
+        return View(new SellersViewModel(search?.Trim(), items));
+    }
 }

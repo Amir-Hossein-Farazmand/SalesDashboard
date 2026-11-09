@@ -1,3 +1,4 @@
+// Register SQL Server repositories and enforce WebAppDB as the connection database.
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

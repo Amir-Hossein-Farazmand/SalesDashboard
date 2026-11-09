@@ -1,3 +1,4 @@
+// Define the AuthService contract without depending on EF Core or the web layer.
 using SalesDashboard.Business.DTOs;
 namespace SalesDashboard.Business.Interfaces;
 

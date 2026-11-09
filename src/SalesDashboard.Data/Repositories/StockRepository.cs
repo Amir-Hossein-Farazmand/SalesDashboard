@@ -1,3 +1,4 @@
+// Read Stock data through the shared DbContext without tracking changes.
 using Microsoft.EntityFrameworkCore;
 using SalesDashboard.Business.Interfaces;
 using SalesDashboard.Business.Models;
